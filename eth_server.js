@@ -1,11 +1,10 @@
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-const axios = require('axios');
-
 const { hashGen } = require('./ipfsHashGeneration');
+const axios  = require('axios');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -15,20 +14,18 @@ app.use(express.static(`${__dirname}/`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+obj = {
+    a: 1,
+    b: 2
+};
 
 app.get('/', (req, res) => {
-    res.redirect('/home');
+    res.send(obj);
 });
 
-app.get('/home', (req, res) => {
-    res.render(`${__dirname}/donorForm.hbs`);
-});
 
-app.post('/home', (req, res) => {
-    console.log(req.body);
-    hashGen(req.body).then(console.log);
-    res.redirect('/home');
-});
+// app.post('/home', (req, res) => {
+// });
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);

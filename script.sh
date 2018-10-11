@@ -1,0 +1,1 @@
+ipfs add $1
