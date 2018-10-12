@@ -52,35 +52,37 @@ def patientOutput(id=None):
         patient = Patient.objects.get(id)
         if patient is None:
             return redirect('/')
-    return render_template('mainApp/store.html',patient=patient)
+    return render_template('mainApp/store.html',patients=patient)
 
 @app.route('/patient/listing')
 def priorityListing():
     patient = getP(m=True)
     return render_template('mainApp/patientOutput.html',patient=patient)
 
-@app.route('/matching')
+@app.route('/matchingList')
 def matchingList():
     match = []
     organl = 0
+    organsT = organs
     for patient in patients:
-        for organ in organs:
+        for organ in organsT:
             if patient["bloodType"].upper() == 'AB' or (patient["bloodType"] == organ["bloodType"]):
-                match.append((patient["id"],organ["organId"]))
+                match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
                 organs[organl]["bloodType"]=""
             elif patient["bloodType"].upper() == 'O' and organ["bloodType"].upper() == 'A' :
-                match.append((patient["id"],organ["organId"]))
+                match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
                 organs[organl]["bloodType"]=""
             elif patient["bloodType"].upper() == 'A' and organ["bloodType"].upper() == 'O' :
-                match.append((patient["id"],organ["organId"]))
+                match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
                 organs[organl]["bloodType"]=""
             elif patient["bloodType"].upper() == 'B' and organ["bloodType"].upper() == 'O' :
-                match.append((patient["id"],organ["organId"]))
+                match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
                 organs[organl]["bloodType"]=""
             else:
                 organl-=1
             organl+=1
-    return str(match)
+    return str(len(match))
+    return render_template('mainApp/matchingList.html',organs=match)
 
 
 if __name__ == '__main__':
