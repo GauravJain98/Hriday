@@ -60,10 +60,13 @@ def patient(id,name,blood_type,diabetes,priorOrgan,dob):
     query_db(command)
 
 def get(table,m=False,id=None):
-    if id is None:
-        command = "SELECT * FROM {}".format(table)
+    if m:
+        if id is None:
+            command = "SELECT * FROM {}".format(table)
+        else:
+            command = "SELECT * FROM {} WHERE id={}".format(table,id)
     else:
-        command = "SELECT * FROM {} WHERE id={}".format(table,id)
+        command = "SELECT * FROM {} order by epts".format(table)
     return query_db(command,m=m)
 
 def getP(id = None,m=False):
@@ -111,4 +114,131 @@ if __name__ == '__main__':
         print(getP(id=2,m=False))
 
 
+
+patients = [
+    {
+        "id":1,
+        "diabetes": "true",
+        "priorOrgan": "true",
+        "name": "Gaurav Jain",
+        "bloodType": "b",
+        "dob": "1998-08-09"
+    },
+    {
+        "id":2,
+        "diabetes": "true",
+        "priorOrgan": "false",
+        "name": "Nidhi Jha",
+        "bloodType": "o",
+        "dob": "1998-08-07"
+    },
+    {
+        "id":3,
+        "diabetes": "false",
+        "priorOrgan": "true",
+        "name": "Arpit Bharti",
+        "bloodType": "b",
+        "dob": "1998-07-09"
+    },
+    {
+        "id":4,
+        "diabetes": "true",
+        "priorOrgan": "false",
+        "name": "Rishab Lamba",
+        "bloodType": "b",
+        "dob": "1997-08-09"
+    },
+    {
+        "id":5,
+        "diabetes": "false",
+        "priorOrgan": "true",
+        "name": "Rajat Sharma",
+        "bloodType": "a",
+        "dob": "1998-08-10"
+    },
+    {
+        "id":6,
+        "diabetes": "true",
+        "priorOrgan": "false",
+        "name": "Manish Aneja",
+        "bloodType": "b",
+        "dob": "1998-08-19"
+    },
+    {
+        "id":7,
+        "diabetes": "false",
+        "priorOrgan": "true",
+        "name": "Gaurav Jain",
+        "bloodType": "b",
+        "dob": "1998-09-09"
+    }
+]
+organs = [
+    {
+        "hName": "jndjnj",
+        "organId": "1",
+        "hState": "Andaman and Nicobar Islands",
+        "hAddress": "jbjbs",
+        "gridRadios": "1",
+        "date": "2018-04-06",
+        "time": "00:59",
+        "storingSolution": "idin",
+        "temperature": "20.1",
+        "donorName": "jnjnd",
+        "donorId": "hhbhs",
+        "dob": "2017-06-06",
+        "gender": "female",
+        "bloodType": "A",
+        "donorState": "Andaman and Nicobar Islands",
+        "donorAddress": "njns",
+        "donorAadhar": "123456789123",
+        "kinName": " jmsjs`kjs`",
+        "kinPhoneNo": "9810020853",
+        "kinAadhar": "981002085312"
+    },
+    {
+        "hName": "jndjnj",
+        "organId": "2",
+        "hState": "Andaman and Nicobar Islands",
+        "hAddress": "jbjbs",
+        "gridRadios": "1",
+        "date": "2018-04-06",
+        "time": "00:59",
+        "storingSolution": "idin",
+        "temperature": "23.8",
+        "donorName": "jnjnd",
+        "donorId": "hhbhs",
+        "dob": "2017-06-06",
+        "gender": "female",
+        "bloodType": "O",
+        "donorState": "Andaman and Nicobar Islands",
+        "donorAddress": "njns",
+        "donorAadhar": "123456789123",
+        "kinName": " jmsjs`kjs`",
+        "kinPhoneNo": "9810020853",
+        "kinAadhar": "981002085312"
+    },
+    {
+        "hName": "jndjnj",
+        "organId": "3",
+        "hState": "Andaman and Nicobar Islands",
+        "hAddress": "jbjbs",
+        "gridRadios": "1",
+        "date": "2018-04-06",
+        "time": "00:59",
+        "storingSolution": "idin",
+        "temperature": "22",
+        "donorName": "jnjnd",
+        "donorId": "hhbhs",
+        "dob": "2017-06-06",
+        "gender": "female",
+        "bloodType": "A",
+        "donorState": "Andaman and Nicobar Islands",
+        "donorAddress": "njns",
+        "donorAadhar": "123456789123",
+        "kinName": " jmsjs`kjs`",
+        "kinPhoneNo": "9810020853",
+        "kinAadhar": "981002085312"
+    }
+]
 
