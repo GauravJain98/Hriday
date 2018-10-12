@@ -63,25 +63,25 @@ def priorityListing():
 def matchingList():
     match = []
     organl = 0
-    organsT = organs
+    organsT = organs.copy()
     for patient in patients:
+        organl = 0
         for organ in organsT:
             if patient["bloodType"].upper() == 'AB' or (patient["bloodType"] == organ["bloodType"]):
                 match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
-                organs[organl]["bloodType"]=""
+                organsT.remove(organ)
             elif patient["bloodType"].upper() == 'O' and organ["bloodType"].upper() == 'A' :
                 match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
-                organs[organl]["bloodType"]=""
+                organsT.remove(organ)
             elif patient["bloodType"].upper() == 'A' and organ["bloodType"].upper() == 'O' :
                 match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
-                organs[organl]["bloodType"]=""
+                organsT.remove(organ)
             elif patient["bloodType"].upper() == 'B' and organ["bloodType"].upper() == 'O' :
                 match.append({"patient":patient["id"],"organ":organ["organId"],"dob":organ["dob"]})
-                organs[organl]["bloodType"]=""
+                organsT.remove(organ)
             else:
                 organl-=1
             organl+=1
-    return str(len(match))
     return render_template('mainApp/matchingList.html',organs=match)
 
 
