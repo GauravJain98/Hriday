@@ -20,6 +20,8 @@ app.use(express.static(`${__dirname}/`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+hbs.registerPartials(`${__dirname}/views/partials`);
+
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
