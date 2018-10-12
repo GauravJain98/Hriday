@@ -32,7 +32,7 @@ contract Organ {
     function getKidneyIds() public view returns (uint[]) {
         return kidneyIds;
     }
-
+    
     function getKidney(uint id) public kidneyExists(id) view  
     returns (
         uint,

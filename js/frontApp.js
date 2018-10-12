@@ -36,10 +36,6 @@ var contractAbi = [
             {
                 name: '_ipfsAddress',
                 type: 'string'
-            },
-            {
-                name: '_author',
-                type: 'string'
             }
         ],
         name: 'createKidney',
@@ -65,10 +61,6 @@ var contractAbi = [
             {
                 name: '',
                 type: 'uint256'
-            },
-            {
-                name: '',
-                type: 'string'
             },
             {
                 name: '',
@@ -120,11 +112,6 @@ var contractAbi = [
                 indexed: false,
                 name: 'ipfsAddress',
                 type: 'string'
-            },
-            {
-                indexed: false,
-                name: 'author',
-                type: 'string'
             }
         ],
         name: 'KidneyCreated',
@@ -132,55 +119,97 @@ var contractAbi = [
     }
 ];
 // Set Contract Address
-var contractAddress = '0x68d05db05445cdaad713955adc0734570ebd5337'; // Add Your Contract address here!!!
+var contractAddress = '0x38f440bc171f7e42b79f8921a5d091ff3911186e'; // Add Your Contract address here!!!
 
 // Set the Contract
 //var contract = web3.eth.Contract(contractAbi).at(contractAddress);
 
 var contract = new web3.eth.Contract(contractAbi, contractAddress);
 
-$('#form1').on('submit', event => {
-    event.preventDefault();
-    var organ = $('#organ').val();
-    var author = $('#author').val();
-    var obj = {
-        organ,
-        author
-    };
-    console.log(obj);
-    contract.methods
-        .createKidney(organ, author)
-        .send(
+getOrganArrayIndex = async () => {
+    let index = 1;
+    await contract.methods
+        .getKidneyIds()
+        .call(
             { from: '0xB8441d33e223D88D9A37d83d4921A12462F23848' },
-            (error, result) => {
-                console.log(error, result);
-            }
+            (error, result) => console.log(error, result)
         )
-        .then(console.log);
-});
+        .then(result => (index = result.length));
+    return index - 1;
+};
 
-$('#form2').on('submit', event => {
-    event.preventDefault();
-    var id = $('#kidneyId').val();
-    console.log('something happened');
-    contract.methods
+getOrganHash = async id => {
+    let OrganHash;
+    await contract.methods
         .getKidney(id)
         .call(
             { from: '0xB8441d33e223D88D9A37d83d4921A12462F23848' },
             (error, result) => console.log(error, result)
         )
-        .then(console.log);
-});
+        .then(res => {
+            OrganHash = res['2'];
+        });
+    return OrganHash;
+};
 
-$('#getKidneyIds').click(() => {
-    contract.methods
-        .getKidneyIds()
-        .call(
-            { from: '0xB8441d33e223D88D9A37d83d4921A12462F23848' },
-            (error, result) => {
-                console.log(error, result);
-            }
-        )
-        .then(console.log);
-    //contract.getKidneyIds(err => console.log(err));
+getAllHashes = async () => {
+    let ipfsHashes = [];
+    await getOrganArrayIndex().then(res=>{
+        for (let i = 1; i <= res; i++) {
+            ipfsHashes.push(getOrganHash(i));
+        }
+    })
+    
+    return ipfsHashes;
+};
+
+getOrgans = async () => {
+    let organArray = [];
+    getAllHashes().then(async res=>{
+        let hashArray = res
+        console.log(hashArray)
+        for (let i = 0; i <= hashArray.length; i++) {
+            await axios({
+                method: 'get',
+                url: `http://localhost:8080/ipfs/${hashArray[i]}`,
+                responseType: 'json'
+            }).then(async respose => {
+                await organArray.push(respose.data);
+            });
+        }    
+    });
+    return organArray;
+};
+
+giveOrgans = async () => {
+    getOrgans().then(async res=>{
+        await axios({
+            method: 'post',
+            url: 'http://localhost:5000/allOrganData',
+            data: res
+        });
+    })
+};
+
+$('#form1').on('submit', async event => {
+    event.preventDefault();
+
+    await axios({
+        method: 'get',
+        url: 'http://localhost:5000/data',
+        responseType: 'json'
+    }).then(respose => {
+        contract.methods
+            .createKidney(respose.data.hash)
+            .send(
+                { from: '0xB8441d33e223D88D9A37d83d4921A12462F23848' },
+                (error, result) => {
+                    console.log(error, result);
+                }
+            )
+            .then(res => {
+                console.log(res);
+                giveOrgans();
+            });
+    });
 });
