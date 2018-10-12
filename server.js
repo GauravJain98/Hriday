@@ -10,10 +10,6 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-let Hash = {
-    hash: 'empty'
-};
-
 app.set('view engine', 'hbs');
 
 app.use(express.static(`${__dirname}/`));
@@ -27,7 +23,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    res.render(`${__dirname}/donorForm.hbs`);
+    res.render('index.hbs');
+});
+
+app.get('/about', (req, res) => {
+    res.render('about.hbs');
+});
+app.get('/organs', (req, res) => {
+    res.render('organs.hbs');
+});
+app.get('/store', (req, res) => {
+    res.render('store.hbs');
 });
 
 app.get('/data', (req, res) => {
