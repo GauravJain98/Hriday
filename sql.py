@@ -47,8 +47,8 @@ def query_db(query, args=(), one=False,m=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
-def patientMaster(id,pid,epts):
-    command = "INSERT INTO patient(id,pid,epts) VALUES({},{},{});".format(id,pid,epts) 
+def patientMaster(id,pid,epts,nepts):
+    command = "INSERT INTO patient(id,pid,epts,nepts) VALUES({},{},{},{});".format(id,pid,epts,nepts) 
     query_db(command,m=True)
     
 def user(id,username,password,address):
