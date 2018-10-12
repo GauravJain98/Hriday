@@ -1,405 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>HRIDAY</title>
+  <title>HRIDAY</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/business-casual.min.css')}}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/business-casual.min.css')}}" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <h1 class="site-heading text-center text-white d-none d-lg-block">
-      <span class="site-heading-upper text-primary mb-3">An organ distribution and management system</span>
-      <span class="site-heading-lower">HRIDAY</span>
-    </h1>
+  <h1 class="site-heading text-center text-white d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">An organ distribution and management system</span>
+    <span class="site-heading-lower">HRIDAY</span>
+  </h1>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="/home">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="/about">Add Organs</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="/organs">View All Organs</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="/store">List Of Patients</a>
-            </li>
-          </ul>
-        </div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/organInput">Add Organs</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/organOutput">View All Organs</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/patientInput">Add Patient</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/patientOutput">List Of Patients</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <section class="page-section about-heading">
-      <div class="container">
-        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{{ url_for('static', filename='img/about.jpg')}}" alt="">
-        <div class="about-heading-content">
-          <div class="row">
-            <div class="col-xl-9 col-lg-10 mx-auto">
-              <div class="bg-faded rounded p-5">
-                <h2 class="section-heading mb-4">
-                  <span class="section-heading-upper">Make Sure To Enter Correct Details</span>
-                  <span class="section-heading-lower">About The Organ</span>
-                </h2>
-                <form id="form1" action="localhost:5000/home" method="POST">
-                  <h3>Organ</h3>
-                  <div class="form-group row">
-                    <label for="hospital" class="col-sm-2 col-form-label">Hospital</label>
-                    <div class="col-sm-10">
-                      <input name="hName" type="text" class="form-control" id="hospital" placeholder="Enter here"
-                        required>
-                    </div>
+  <section class="page-section about-heading">
+    <div class="container">
+      <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{{ url_for('static', filename='img/about.jpg')}}"
+        alt="">
+      <div class="about-heading-content">
+        <div class="row">
+          <div class="col-xl-9 col-lg-10 mx-auto">
+            <div class="bg-faded rounded p-5">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-upper">Make Sure To Enter Correct Details</span>
+                <span class="section-heading-lower">About The Organ</span>
+              </h2>
+              <form id="form1" action="localhost:5000/home" method="POST">
+                <h3>Organ</h3>
+                <div class="form-group row">
+                  <label for="hospital" class="col-sm-2 col-form-label">Hospital</label>
+                  <div class="col-sm-10">
+                    <input name="hName" type="text" class="form-control" id="hospital" placeholder="Enter here"
+                      required>
                   </div>
-                  <div class="form-group row">
-                    <label for="organId" class="col-sm-2 col-form-label">Organ ID</label>
-                    <div class="col-sm-10">
-                      <input name="organId" type="text" class="form-control" id="hospital" placeholder="Enter here"
-                        required>
-                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="organId" class="col-sm-2 col-form-label">Organ ID</label>
+                  <div class="col-sm-10">
+                    <input name="organId" type="text" class="form-control" id="hospital" placeholder="Enter here"
+                      required>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="stateHospital" class="col-sm-2 col-form-label">State</label>
-                    <div class="col-sm-10">
-                      <select name="hState" class="form-control">
-                        <option>Andaman and Nicobar Islands</option>
-                        <option>DelhiAndhra Pradesh</option>
-                        <option>Arunachal Pradesh</option>
-                        <option>Assam</option>
-                        <option>Bihar</option>
-                        <option>Chandigarh</option>
-                        <option>Chhattisgarh</option>
-                        <option>Dadra and Nagar Haveli</option>
-                        <option>Daman and Diu</option>
-                        <option>Delhi</option>
-                        <option>Goa</option>
-                        <option>Gujarat</option>
-                        <option>Haryana</option>
-                        <option>Himachal Pradesh</option>
-                        <option>Jammu and Kashmir</option>
-                        <option>Jharkhand</option>
-                        <option>Karnataka</option>
-                        <option>Kerala</option>
-                        <option>Lakshadweep</option>
-                        <option>Madhya Pradesh</option>
-                        <option>Maharashtra</option>
-                        <option>Manipur</option>
-                        <option>Meghalaya</option>
-                        <option>Mizoram</option>
-                        <option>Nagaland</option>
-                        <option>Odisha</option>
-                        <option>Puducherry</option>
-                        <option>Punjab</option>
-                        <option>Rajasthan</option>
-                        <option>Sikkim</option>
-                        <option>Tamil Nadu</option>
-                        <option>Telangana</option>
-                        <option>Tripura</option>
-                        <option>Uttar Pradesh</option>
-                        <option>Uttarakhand</option>
-                        <option>West Bengal</option>
-                      </select>
-                    </div>
+                <div class="form-group row">
+                  <label for="stateHospital" class="col-sm-2 col-form-label">State</label>
+                  <div class="col-sm-10">
+                    <select name="hState" class="form-control">
+                      <option>Andaman and Nicobar Islands</option>
+                      <option>DelhiAndhra Pradesh</option>
+                      <option>Arunachal Pradesh</option>
+                      <option>Assam</option>
+                      <option>Bihar</option>
+                      <option>Chandigarh</option>
+                      <option>Chhattisgarh</option>
+                      <option>Dadra and Nagar Haveli</option>
+                      <option>Daman and Diu</option>
+                      <option>Delhi</option>
+                      <option>Goa</option>
+                      <option>Gujarat</option>
+                      <option>Haryana</option>
+                      <option>Himachal Pradesh</option>
+                      <option>Jammu and Kashmir</option>
+                      <option>Jharkhand</option>
+                      <option>Karnataka</option>
+                      <option>Kerala</option>
+                      <option>Lakshadweep</option>
+                      <option>Madhya Pradesh</option>
+                      <option>Maharashtra</option>
+                      <option>Manipur</option>
+                      <option>Meghalaya</option>
+                      <option>Mizoram</option>
+                      <option>Nagaland</option>
+                      <option>Odisha</option>
+                      <option>Puducherry</option>
+                      <option>Punjab</option>
+                      <option>Rajasthan</option>
+                      <option>Sikkim</option>
+                      <option>Tamil Nadu</option>
+                      <option>Telangana</option>
+                      <option>Tripura</option>
+                      <option>Uttar Pradesh</option>
+                      <option>Uttarakhand</option>
+                      <option>West Bengal</option>
+                    </select>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="addressHospital" class="col-sm-2 col-form-label">Address</label>
-                    <div class="col-sm-10">
-                      <textarea name="hAddress" class="form-control" id="addressHospital" rows="2" placeholder="Enter here"
-                        required></textarea>
-                    </div>
+                <div class="form-group row">
+                  <label for="addressHospital" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-10">
+                    <textarea name="hAddress" class="form-control" id="addressHospital" rows="2" placeholder="Enter here"
+                      required></textarea>
                   </div>
+                </div>
 
 
-                  <fieldset class="form-group">
-                    <div class="row">
-                      <legend class="col-form-label col-sm-2 pt-0">Organ Donated</legend>
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="kidney" value="1" checked>
-                          <label class="form-check-label" for="kidney">
-                            Kidney
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="liver" value="2">
-                          <label class="form-check-label" for="liver">
-                            Liver
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="lung" value="3">
-                          <label class="form-check-label" for="lung">
-                            Lung
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="heart" value="4">
-                          <label class="form-check-label" for="heart">
-                            Heart
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="pancreas" value="5">
-                          <label class="form-check-label" for="pancreas">
-                            Pancreas
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="intestine" value="6">
-                          <label class="form-check-label" for="intestine">
-                            Intestine
-                          </label>
-                        </div>
+                <fieldset class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Organ Donated</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="kidney" value="1" checked>
+                        <label class="form-check-label" for="kidney">
+                          Kidney
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="liver" value="2">
+                        <label class="form-check-label" for="liver">
+                          Liver
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="lung" value="3">
+                        <label class="form-check-label" for="lung">
+                          Lung
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="heart" value="4">
+                        <label class="form-check-label" for="heart">
+                          Heart
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="pancreas" value="5">
+                        <label class="form-check-label" for="pancreas">
+                          Pancreas
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="intestine" value="6">
+                        <label class="form-check-label" for="intestine">
+                          Intestine
+                        </label>
                       </div>
                     </div>
-                  </fieldset>
-
-                  <div class="form-group row">
-                    <label for="donationDate" class="col-sm-2 col-form-label">Date Of Donation</label>
-                    <div class="col-sm-10">
-                      <input name="date" type="date" class="form-control" id="donationDate" max="2018-04-08" min="2018-04-06"
-                        required>
-                      <small class="form-text text-muted">Enter date between 2018-04-08 and 2018-04-06.</small>
-                    </div>
                   </div>
+                </fieldset>
 
-                  <div class="form-group row">
-                    <label for="donationTime" class="col-sm-2 col-form-label">Time Of Donation</label>
-                    <div class="col-sm-10">
-                      <input name="time" type="time" class="form-control" id="donationTime" required>
-                    </div>
+                <div class="form-group row">
+                  <label for="donationDate" class="col-sm-2 col-form-label">Date Of Donation</label>
+                  <div class="col-sm-10">
+                    <input name="date" type="date" class="form-control" id="donationDate" max="2018-04-08" min="2018-04-06"
+                      required>
+                    <small class="form-text text-muted">Enter date between 2018-04-08 and 2018-04-06.</small>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="sol" class="col-sm-2 col-form-label">Storing Solution</label>
-                    <div class="col-sm-10">
-                      <input name="storingSolution" type="text" class="form-control" id="sol" placeholder="Enter here"
-                        required>
-                      <small id="solHelp" class="form-text text-muted">e.g. ViaSpan (University of Wisconsin)
-                        Solution,
-                        Eurocollins Solution, Custodial Solution and others.</small>
-                    </div>
+                <div class="form-group row">
+                  <label for="donationTime" class="col-sm-2 col-form-label">Time Of Donation</label>
+                  <div class="col-sm-10">
+                    <input name="time" type="time" class="form-control" id="donationTime" required>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="temp" class="col-sm-2 col-form-label">Temperature</label>
-                    <div class="col-sm-10">
-                      <input name="temperature" type="number" class="form-control" id="sol" placeholder="Enter here"
-                        required>
-                      <small id="tempHelp" class="form-text text-muted">Enter the temperature in degree celsius.</small>
-                    </div>
+                <div class="form-group row">
+                  <label for="sol" class="col-sm-2 col-form-label">Storing Solution</label>
+                  <div class="col-sm-10">
+                    <input name="storingSolution" type="text" class="form-control" id="sol" placeholder="Enter here"
+                      required>
+                    <small id="solHelp" class="form-text text-muted">e.g. ViaSpan (University of Wisconsin)
+                      Solution,
+                      Eurocollins Solution, Custodial Solution and others.</small>
                   </div>
+                </div>
 
-                  <h3>Donor</h3>
-
-                  <div class="form-group row">
-                    <label for="fName" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="donorName" class="form-control" id="fName" placeholder="Enter here"
-                        required>
-                    </div>
+                <div class="form-group row">
+                  <label for="temp" class="col-sm-2 col-form-label">Temperature</label>
+                  <div class="col-sm-10">
+                    <input name="temperature" type="number" class="form-control" id="sol" placeholder="Enter here"
+                      required>
+                    <small id="tempHelp" class="form-text text-muted">Enter the temperature in degree celsius.</small>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="DonorId" class="col-sm-2 col-form-label">Donor ID</label>
-                    <div class="col-sm-10">
-                      <input name="donorId" type="text" class="form-control" id="hospital" placeholder="Enter here"
-                        required>
-                    </div>
+                <h3>Donor</h3>
+
+                <div class="form-group row">
+                  <label for="fName" class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="donorName" class="form-control" id="fName" placeholder="Enter here"
+                      required>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="dob" class="col-sm-2 col-form-label">DOB</label>
-                    <div class="col-sm-10">
-                      <input name="dob" type="date" class="form-control" id="dob" max="2018-04-08" min="1918-04-08"
-                        required>
-                    </div>
+                <div class="form-group row">
+                  <label for="DonorId" class="col-sm-2 col-form-label">Donor ID</label>
+                  <div class="col-sm-10">
+                    <input name="donorId" type="text" class="form-control" id="hospital" placeholder="Enter here"
+                      required>
                   </div>
+                </div>
 
-                  <fieldset class="form-group">
-                    <div class="row">
-                      <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gender" id="female" value="female" checked>
-                          <label class="form-check-label" for="female">
-                            Female
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                          <label class="form-check-label" for="male">
-                            Male
-                          </label>
-                        </div>
+                <div class="form-group row">
+                  <label for="dob" class="col-sm-2 col-form-label">DOB</label>
+                  <div class="col-sm-10">
+                    <input name="dob" type="date" class="form-control" id="dob" max="2018-04-08" min="1918-04-08"
+                      required>
+                  </div>
+                </div>
+
+                <fieldset class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" checked>
+                        <label class="form-check-label" for="female">
+                          Female
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                        <label class="form-check-label" for="male">
+                          Male
+                        </label>
                       </div>
                     </div>
-                  </fieldset>
-
-                  <div class="form-group row">
-                    <label for="bloodGroup" class="col-sm-2 col-form-label">Blood Group</label>
-                    <div class="col-sm-10">
-                      <select name="bloodGroup" class="form-control">
-                        <option>A+</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B-</option>
-                        <option>O+</option>
-                        <option>O-</option>
-                        <option>AB+</option>
-                        <option>AB-</option>
-                      </select>
-                    </div>
                   </div>
+                </fieldset>
 
-                  <div class="form-group row">
-                    <label for="state" class="col-sm-2 col-form-label">State</label>
-                    <div class="col-sm-10">
-                      <select name="donorState" class="form-control">
-                        <option>Andaman and Nicobar Islands</option>
-                        <option>DelhiAndhra Pradesh</option>
-                        <option>Arunachal Pradesh</option>
-                        <option>Assam</option>
-                        <option>Bihar</option>
-                        <option>Chandigarh</option>
-                        <option>Chhattisgarh</option>
-                        <option>Dadra and Nagar Haveli</option>
-                        <option>Daman and Diu</option>
-                        <option>Delhi</option>
-                        <option>Goa</option>
-                        <option>Gujarat</option>
-                        <option>Haryana</option>
-                        <option>Himachal Pradesh</option>
-                        <option>Jammu and Kashmir</option>
-                        <option>Jharkhand</option>
-                        <option>Karnataka</option>
-                        <option>Kerala</option>
-                        <option>Lakshadweep</option>
-                        <option>Madhya Pradesh</option>
-                        <option>Maharashtra</option>
-                        <option>Manipur</option>
-                        <option>Meghalaya</option>
-                        <option>Mizoram</option>
-                        <option>Nagaland</option>
-                        <option>Odisha</option>
-                        <option>Puducherry</option>
-                        <option>Punjab</option>
-                        <option>Rajasthan</option>
-                        <option>Sikkim</option>
-                        <option>Tamil Nadu</option>
-                        <option>Telangana</option>
-                        <option>Tripura</option>
-                        <option>Uttar Pradesh</option>
-                        <option>Uttarakhand</option>
-                        <option>West Bengal</option>
-                      </select>
-                    </div>
+                <div class="form-group row">
+                  <label for="bloodGroup" class="col-sm-2 col-form-label">Blood Group</label>
+                  <div class="col-sm-10">
+                    <select name="bloodGroup" class="form-control">
+                      <option>A+</option>
+                      <option>A-</option>
+                      <option>B+</option>
+                      <option>B-</option>
+                      <option>O+</option>
+                      <option>O-</option>
+                      <option>AB+</option>
+                      <option>AB-</option>
+                    </select>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="address" class="col-sm-2 col-form-label">Address</label>
-                    <div class="col-sm-10">
-                      <textarea name="donorAddress" class="form-control" id="address" rows="2" placeholder="Enter here"
-                        required></textarea>
-                    </div>
+                <div class="form-group row">
+                  <label for="state" class="col-sm-2 col-form-label">State</label>
+                  <div class="col-sm-10">
+                    <select name="donorState" class="form-control">
+                      <option>Andaman and Nicobar Islands</option>
+                      <option>DelhiAndhra Pradesh</option>
+                      <option>Arunachal Pradesh</option>
+                      <option>Assam</option>
+                      <option>Bihar</option>
+                      <option>Chandigarh</option>
+                      <option>Chhattisgarh</option>
+                      <option>Dadra and Nagar Haveli</option>
+                      <option>Daman and Diu</option>
+                      <option>Delhi</option>
+                      <option>Goa</option>
+                      <option>Gujarat</option>
+                      <option>Haryana</option>
+                      <option>Himachal Pradesh</option>
+                      <option>Jammu and Kashmir</option>
+                      <option>Jharkhand</option>
+                      <option>Karnataka</option>
+                      <option>Kerala</option>
+                      <option>Lakshadweep</option>
+                      <option>Madhya Pradesh</option>
+                      <option>Maharashtra</option>
+                      <option>Manipur</option>
+                      <option>Meghalaya</option>
+                      <option>Mizoram</option>
+                      <option>Nagaland</option>
+                      <option>Odisha</option>
+                      <option>Puducherry</option>
+                      <option>Punjab</option>
+                      <option>Rajasthan</option>
+                      <option>Sikkim</option>
+                      <option>Tamil Nadu</option>
+                      <option>Telangana</option>
+                      <option>Tripura</option>
+                      <option>Uttar Pradesh</option>
+                      <option>Uttarakhand</option>
+                      <option>West Bengal</option>
+                    </select>
                   </div>
+                </div>
 
-
-                  <div class="form-group row">
-                    <label for="aadhar" class="col-sm-2 col-form-label">Aadhar Number</label>
-                    <div class="col-sm-10">
-                      <input name="donorAadhar" type="text" pattern="[0-9]{12}" class="form-control" id="pinCode"
-                        placeholder="Enter here" required>
-                      <small class="form-text text-muted">Enter the 12 digit aadhar number.</small>
-                    </div>
+                <div class="form-group row">
+                  <label for="address" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-10">
+                    <textarea name="donorAddress" class="form-control" id="address" rows="2" placeholder="Enter here"
+                      required></textarea>
                   </div>
+                </div>
 
 
-                  <h3>Next Of Kin</h3>
-
-                  <div class="form-group row">
-                    <label for="fNameKin" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="kinName" class="form-control" id="fNameKin" placeholder="Enter here"
-                        required>
-                    </div>
+                <div class="form-group row">
+                  <label for="aadhar" class="col-sm-2 col-form-label">Aadhar Number</label>
+                  <div class="col-sm-10">
+                    <input name="donorAadhar" type="text" pattern="[0-9]{12}" class="form-control" id="pinCode"
+                      placeholder="Enter here" required>
+                    <small class="form-text text-muted">Enter the 12 digit aadhar number.</small>
                   </div>
+                </div>
 
 
-                  <div class="form-group row">
-                    <label for="phoneKin" class="col-sm-2 col-form-label">Phones</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="kinPhoneNo" class="form-control" pattern="[789][0-9]{9}" id="phoneKin"
-                        placeholder="Enter here" required>
-                      <small class="form-text text-muted">Enter the 10 digit phone number beginning with 7, 8 or 9.</small>
-                    </div>
+                <h3>Next Of Kin</h3>
+
+                <div class="form-group row">
+                  <label for="fNameKin" class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="kinName" class="form-control" id="fNameKin" placeholder="Enter here"
+                      required>
                   </div>
+                </div>
 
-                  <div class="form-group row">
-                    <label for="aadhar" class="col-sm-2 col-form-label">Aadhar Number</label>
-                    <div class="col-sm-10">
-                      <input name="kinAadhar" type="text" pattern="[0-9]{12}" class="form-control" id="pinCode"
-                        placeholder="Enter here" required>
-                      <small class="form-text text-muted">Enter the 12 digit aadhar number.</small>
-                    </div>
-                  </div>
 
-                  <div class="form-group row">
-                    <div class="col-sm-10">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+                <div class="form-group row">
+                  <label for="phoneKin" class="col-sm-2 col-form-label">Phones</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="kinPhoneNo" class="form-control" pattern="[789][0-9]{9}" id="phoneKin"
+                      placeholder="Enter here" required>
+                    <small class="form-text text-muted">Enter the 10 digit phone number beginning with 7, 8 or 9.</small>
                   </div>
-                </form>
-              </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="aadhar" class="col-sm-2 col-form-label">Aadhar Number</label>
+                  <div class="col-sm-10">
+                    <input name="kinAadhar" type="text" pattern="[0-9]{12}" class="form-control" id="pinCode"
+                      placeholder="Enter here" required>
+                    <small class="form-text text-muted">Enter the 12 digit aadhar number.</small>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="footer text-faded text-center py-5">
-      <div class="container">
-        <p class="m-0 small">Team Over 9000</p>
-      </div>
-    </footer>
+  <footer class="footer text-faded text-center py-5">
+    <div class="container">
+      <p class="m-0 small">Team Over 9000</p>
+    </div>
+  </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script src="{{ url_for('static', filename='js/web3.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/frontApp.js')}}"></script>
-  </body>
+  <script src="{{ url_for('static', filename='js/web3.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/frontApp.js')}}"></script>
+</body>
 
 </html>

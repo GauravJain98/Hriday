@@ -12,7 +12,7 @@ CREATE TABLE `patient` (
 	`blood-type` VARCHAR(4) NOT NULL,
 	`diabetes` BOOLEAN NOT NULL,
 	`priorOrgan` BOOLEAN NOT NULL,
-	`dob` DATE NOT NULL,
+	`dob` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
