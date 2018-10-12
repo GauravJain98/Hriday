@@ -3,6 +3,7 @@ const fs = require('fs');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const cors = require('cors');
 
 const { hashGen } = require('./ipfsHashGeneration');
 
@@ -15,7 +16,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(`${__dirname}/`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 hbs.registerPartials(`${__dirname}/views/partials`);
 
 app.get('/', (req, res) => {

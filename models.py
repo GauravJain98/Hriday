@@ -1,13 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
 import datetime
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request,render_template
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('mainApp/index.html') 
+    return render_template('mainApp/about.html') 
 
 @app.route('/organ/add')
 def organInput():
@@ -90,4 +89,4 @@ def matchingList(request):
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug = True,port=8000)

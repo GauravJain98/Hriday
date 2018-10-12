@@ -11,7 +11,7 @@
     <title>HRIDAY</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/business-casual.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/business-casual.min.css')}}" rel="stylesheet">
 
   </head>
 
@@ -61,7 +61,7 @@
 
     <section class="page-section about-heading">
       <div class="container">
-        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="img/about.jpg" alt="">
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{{ url_for('static', filename='img/about.jpg')}}" alt="">
         <div class="about-heading-content">
           <div class="row">
             <div class="col-xl-9 col-lg-10 mx-auto">
@@ -70,7 +70,7 @@
                   <span class="section-heading-upper">Make Sure To Enter Correct Details</span>
                   <span class="section-heading-lower">About The Organ</span>
                 </h2>
-                <form id="form1" action="/home" method="POST">
+                <form id="form1" action="localhost:5000/home" method="POST">
                   <h3>Organ</h3>
                   <div class="form-group row">
                     <label for="hospital" class="col-sm-2 col-form-label">Hospital</label>
@@ -357,7 +357,7 @@
 
 
                   <div class="form-group row">
-                    <label for="phoneKin" class="col-sm-2 col-form-label">Phone</label>
+                    <label for="phoneKin" class="col-sm-2 col-form-label">Phones</label>
                     <div class="col-sm-10">
                       <input type="text" name="kinPhoneNo" class="form-control" pattern="[789][0-9]{9}" id="phoneKin"
                         placeholder="Enter here" required>
@@ -394,12 +394,12 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script src="js/web3.min.js"></script>
-    <script src="js/frontApp.js"></script>
+    <script src="{{ url_for('static', filename='js/web3.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/frontApp.js')}}"></script>
   </body>
 
 </html>
